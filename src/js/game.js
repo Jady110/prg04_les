@@ -1,6 +1,7 @@
 import '../css/style.css'
 import { Actor, Engine, Vector, DisplayMode, randomInRange } from "excalibur"
 import { Resources, ResourceLoader } from './resources.js'
+import { Fish } from './Fish.js'
 
 export class Game extends Engine {
 
@@ -19,12 +20,8 @@ export class Game extends Engine {
         console.log("start de game!")
 
         for (let i = 0; i < 100; i++) {
-            const fish = new Actor()
-            fish.graphics.use(Resources.Fish.toSprite())
-            fish.pos = new Vector(Math.random() * 1280, randomInRange(0, 720))
-            fish.vel = new Vector(randomInRange(-100, 100), randomInRange(-100, 100))
-            fish.events.on("exitviewport", (e) => this.fishLeft(e))
-            this.add(fish)
+        const fish = new Fish()
+        this.add(fish)
         }
 
         const shark = new Actor()
@@ -32,7 +29,7 @@ export class Game extends Engine {
         shark.pos = new Vector(700, 100)
         shark.vel = new Vector(-10, 0)
         shark.events.on("exitviewport", (e) => this.sharkLeft(e))
-        shark.add(fish)
+        this.add(shark)
 
         const water = new Actor()
         water.graphics.use(Resources.Water.toSprite())
