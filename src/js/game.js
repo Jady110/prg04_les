@@ -1,9 +1,10 @@
 import '../css/style.css'
 import { Actor, Engine, Vector, DisplayMode, randomInRange } from "excalibur"
 import { Resources, ResourceLoader } from './resources.js'
-import { Fish } from './Fish.js'
-import { Shark } from './Shark.js'
-import { Bubble } from './Bubble.js'
+// import { Fish } from './Fish.js'
+import { Player } from './Player.js'
+// import { Bubble } from './Bubble.js'
+// import { Score } from './Score.js'
 
 export class Game extends Engine {
 
@@ -21,28 +22,27 @@ export class Game extends Engine {
 
         console.log("start de game!")
 
-        for (let i = 0; i < 10; i++) {
-        const fish = new Fish()
-        this.add(fish)
-        }
+        // for (let i = 0; i < 10; i++) {
+        // const fish = new Fish()
+        // this.add(fish)
+        // }
 
-        const shark = new Shark()
-        this.add(shark)
+        const desert = new Actor()
+        desert.graphics.use(Resources.Desert.toSprite())
+        desert.pos = new Vector(1280 / 2, 720 / 2)
+        desert.z = -1;
+        this.add(desert)
 
-        const water = new Actor()
-        water.graphics.use(Resources.Water.toSprite())
-        water.pos = new Vector(1280 / 2, 720 / 2)
-        water.z = -1;
-        this.add(water)
+        // for (let i = 0; i < 10; i++) {
+        // const bubble = new Bubble()
+        // this.add(bubble)
+        // }
 
-        for (let i = 0; i < 10; i++) {
-        const bubble = new Bubble()
-        this.add(bubble)
-        }
-    }
+        // const scoreLabel = new Score();
+        // this.add(scoreLabel)
 
-    fishLeft(e) {
-        e.target.pos = new Vector(Math.random() * 1280, randomInRange(0, 720))
+        const player = new Player()
+        this.add(player)
     }
 }
 
