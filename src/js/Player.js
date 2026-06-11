@@ -28,22 +28,33 @@ export class Player extends Actor {
             return;
         }
 
-velX = -100;
 
         velX = -100
 
-         if (this.pos.x < -50) {
+        const topLimit = 450;    
+        const bottomLimit = 650; 
+
+        if (this.pos.y < topLimit) {
+            this.pos.y = topLimit;
+        }
+
+        if (this.pos.y > bottomLimit) {
+            this.pos.y = bottomLimit;
+        }
+
+        if (this.pos.x < -50) {
             console.log("Game Over!");
             engine.stop();
         }
 
-        // if (engine.input.keyboard.isHeld(Keys.W)) {
-        //     velY = -250;
-        // }
 
-        // if (engine.input.keyboard.isHeld(Keys.S)) {
-        //     velY = 250;
-        // }
+        if (engine.input.keyboard.isHeld(Keys.W)) {
+            velY = -100;
+        }
+
+        if (engine.input.keyboard.isHeld(Keys.S)) {
+            velY = 100;
+        }
 
         if (engine.input.keyboard.isHeld(Keys.A)) {
             velX = 50;

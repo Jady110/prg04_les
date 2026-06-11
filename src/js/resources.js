@@ -2,11 +2,11 @@ import { ImageSource, Sound, Resource, Loader } from 'excalibur'
 
 // voeg hier jouw eigen resources toe
 const Resources = {
-    Fish: new ImageSource('images/fish.png'),
     Player: new ImageSource('images/standing.webp'),
     Desert: new ImageSource('images/desert.webp'),
-    Bubble: new ImageSource('images/bubble.png'),
-    Mine: new ImageSource('images/mine.png'),
+    tw1: new ImageSource('images/weedOne.webp'),
+    tw2: new ImageSource('images/weedTwo.webp'),
+    tw3: new ImageSource('images/weedThree.webp'),
     Run1: new ImageSource('images/runningOne.webp'),
     Run2: new ImageSource('images/runningTwo.png'),
     Run3: new ImageSource('images/runningThree.webp'),

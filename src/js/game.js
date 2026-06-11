@@ -3,7 +3,7 @@ import { Actor, Engine, Vector, DisplayMode, randomInRange } from "excalibur"
 import { Resources, ResourceLoader } from './resources.js'
 // import { Fish } from './Fish.js'
 import { Player } from './Player.js'
-// import { Bubble } from './Bubble.js'
+import { TumbleWeed } from './TumbleWeed.js'
 // import { Score } from './Score.js'
 
 export class Game extends Engine {
@@ -33,10 +33,10 @@ export class Game extends Engine {
         desert.z = -1;
         this.add(desert)
 
-        // for (let i = 0; i < 10; i++) {
-        // const bubble = new Bubble()
-        // this.add(bubble)
-        // }
+        for (let i = 0; i < 10; i++) {
+        const tw = new TumbleWeed()
+        this.add(tw)
+        }
 
         // const scoreLabel = new Score();
         // this.add(scoreLabel)
