@@ -1,48 +1,28 @@
 import '../css/style.css'
-import { Actor, Engine, Vector, DisplayMode, randomInRange } from "excalibur"
-import { Resources, ResourceLoader } from './resources.js'
-// import { Fish } from './Fish.js'
-import { Player } from './Player.js'
-import { TumbleWeed } from './TumbleWeed.js'
-// import { Score } from './Score.js'
+import { Engine, DisplayMode, } from "excalibur"
+import { ResourceLoader } from './resources.js'
+import { StartScene } from "./Start.js";
+import { GameScene } from "./scene.js";
+import { GameOverScene } from "./GameOver.js";
 
 export class Game extends Engine {
 
     constructor() {
-        super({ 
+        super({
             width: 1280,
             height: 720,
-            maxFps: 60,
             displayMode: DisplayMode.FitScreen
-         })
-        this.start(ResourceLoader).then(() => this.startGame())
-    }
+        });
 
-    startGame() {
+        this.score = 0;
 
-        console.log("start de game!")
+        this.add("start", new StartScene());
+        this.add("game", new GameScene());
+        this.add("gameover", new GameOverScene());
 
-        // for (let i = 0; i < 10; i++) {
-        // const fish = new Fish()
-        // this.add(fish)
-        // }
-
-        const desert = new Actor()
-        desert.graphics.use(Resources.Desert.toSprite())
-        desert.pos = new Vector(1280 / 2, 720 / 2)
-        desert.z = -1;
-        this.add(desert)
-
-        for (let i = 0; i < 10; i++) {
-        const tw = new TumbleWeed()
-        this.add(tw)
-        }
-
-        // const scoreLabel = new Score();
-        // this.add(scoreLabel)
-
-        const player = new Player()
-        this.add(player)
+        this.start(ResourceLoader).then(() => {
+            this.goToScene("start");
+        });
     }
 }
 

@@ -1,25 +1,24 @@
-// import { hasOnInitialize, Vector } from "excalibur";
+import { Label, Vector, Font, Color } from "excalibur";
 
-// export class Score extends Label {
-//     score = 0
+export class Score extends Label {
 
-//     onInitialize(engine) {
-//         this.text = "Score: 0"
-//         this.font = new Font({
-//             family: 'Arial',
-//             size: 24,
-//             unit: FontUnix.Px,
-//             color:Color.Black
-//         })
+    constructor() {
+        super({
+            text: "Score: 0",
+            pos: new Vector(100, 50)
+        });
 
-//         this.pos = new Vector(100, 100)
-//     }
+        this.score = 0;
 
-//     addPoint() {
-//         this.score++;
-//         this.text = `Score: ${this.score}`
-//     }
+        this.font = new Font({
+            size: 30
+        });
 
-//     removePoints
+        this.color = Color.White;
+    }
 
-// }
+    addPoint() {
+        this.score++;
+        this.text = `Score: ${this.score}`;
+    }
+}

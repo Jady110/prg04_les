@@ -1,7 +1,15 @@
-import { Actor, Vector, Keys, Animation, range } from "excalibur"
+import { Actor, Vector, Keys, CollisionType } from "excalibur"
 import { Resources } from "./resources.js"
-
+import { GameOverScene } from "./GameOver.js";
+import { TumbleWeed } from "./TumbleWeed.js";
 export class Player extends Actor {
+
+    constructor() {
+        super({
+            width: 50,
+            height: 50
+        });
+    }
 
     onInitialize(engine) {
         this.graphics.use(Resources.Player.toSprite());
@@ -11,22 +19,21 @@ export class Player extends Actor {
         this.graphics.use(Resources.Player.toSprite());
 
         this.gameStarted = false;
-        
+
+        this.body.collisionType = CollisionType.Active;        
+    }
+
+
+    onCollisionStart(event) {
+        // console.log("hacker spotted, je bent geraakt");
+
+        this.scene.engine.goToScene("gameover");
     }
 
 
     onPreUpdate(engine) {
         let velX = 0;
         let velY = 0;
-
-        if (!this.gameStarted) {
-
-            if (engine.input.keyboard.wasPressed(Keys.Space)) {
-                this.gameStarted = true;
-            }
-
-            return;
-        }
 
 
         velX = -100
@@ -44,27 +51,27 @@ export class Player extends Actor {
 
         if (this.pos.x < -50) {
             console.log("Game Over!");
-            engine.stop();
+            this.scene.engine.goToScene("gameover");
         }
 
 
         if (engine.input.keyboard.isHeld(Keys.W)) {
             velY = -100;
+            this.graphics.use(Resources.Run3.toSprite());
         }
 
         if (engine.input.keyboard.isHeld(Keys.S)) {
             velY = 100;
+            this.graphics.use(Resources.Run3.toSprite());
         }
 
         if (engine.input.keyboard.isHeld(Keys.A)) {
             velX = 50;
+            this.graphics.use(Resources.Run1.toSprite());
         }
 
         if (engine.input.keyboard.isHeld(Keys.D)) {
             velX = 150;
-        }
-
-        if (velX !== -100) {
             this.graphics.use(Resources.Run1.toSprite());
         }
 
