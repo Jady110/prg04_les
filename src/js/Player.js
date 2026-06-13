@@ -18,7 +18,7 @@ export class Player extends Actor {
 
         this.graphics.use(Resources.Player.toSprite());
 
-        this.gameStarted = false;
+        // this.gameStarted = false;
 
         this.body.collisionType = CollisionType.Active;        
     }

@@ -2,7 +2,7 @@ import { Scene, Label, Vector, Color, Font, Keys } from "excalibur";
 
 export class GameOverScene extends Scene {
 
-    onActivate() {
+    onInitialize() {
 
         this.clear();
 
@@ -22,12 +22,5 @@ export class GameOverScene extends Scene {
 
         this.add(gameOver);
         this.add(scoreText);
-    }
-
-    onPreUpdate(engine) {
-        if (engine.input.keyboard.wasPressed(Keys.Space)) {
-            engine.score = 0; // reset score for new game
-            engine.goToScene("game");
-        }
     }
 }
